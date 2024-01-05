@@ -10,9 +10,9 @@ Rails.application.config.after_initialize do
 end
 Rails.application.config.after_initialize do
   Rails.application.config.spree_backend.tabs[:product].add(
-    Spree::Admin::Tabs::TabBuilder.new(Spree.t(:related_products), ->(resource) { related_admin_product_url(@product) }).
-      with_icon_key('view.svg').
-      with_active_check.
-      build
+    Spree::Admin::Tabs::TabBuilder.new(Spree.t(:related), ->(resource){Spree::Core::Engine.routes.url_helpers.related_admin_product_path(resource)}).
+    with_icon_key('view.svg').
+    with_active_check.
+    build
   )
 end
